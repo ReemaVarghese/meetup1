@@ -61,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:id="@+id/rinterest"
         android:layout_below="@id/txtname"
         android:orientation="horizontal">
         <RadioButton android:id="@+id/rcricket"
@@ -88,13 +89,13 @@
     </Button>
 
     <ProgressBar
+        android:id="@+id/progressbarofsetProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/btnsave"
-        android:id="@+id/progressbarofsetProfile"
-        android:visibility="invisible"
-        android:layout_marginTop="30dp">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible">
 
     </ProgressBar>
 

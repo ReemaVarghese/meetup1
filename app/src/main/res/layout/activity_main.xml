@@ -38,62 +38,60 @@
     </RelativeLayout>
 
 
-
-
     <com.hbb20.CountryCodePicker
+        android:id="@+id/countrycodepicker"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:ccp_areaCodeDetectedCountry="true"
+        android:layout_above="@id/centerhorizontalline"
         android:layout_centerInParent="true"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:id="@+id/countrycodepicker"
-        app:ccp_autoDetectCountry="true"
         android:layout_marginBottom="10dp"
-        android:layout_above="@id/centerhorizontalline">
+        app:ccp_areaCodeDetectedCountry="true"
+        app:ccp_autoDetectCountry="true">
 
     </com.hbb20.CountryCodePicker>
 
     <EditText
+        android:id="@+id/txtnumber"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/centerhorizontalline"
         android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:id="@+id/txtnumber"
-        android:hint="Enter Your Number"
-        android:textAlignment="center"
-        android:inputType="number"
-        android:textColor="@color/black"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/centerhorizontalline">
+        android:layout_marginRight="70dp"
+        android:hint="Enter Your Number"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/black">
 
     </EditText>
 
     <Button
+        android:id="@+id/btnsend"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_below="@id/txtnumber"
-        android:id="@+id/btnsend"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:textColor="@color/white"
+        android:background="#ED0959"
         android:paddingLeft="40dp"
-        android:text="Sent OTP"
-        android:textSize="15sp"
         android:paddingRight="40dp"
-        android:background="#ED0959">
+        android:text="Sent OTP"
+        android:textColor="@color/white"
+        android:textSize="15sp">
 
     </Button>
 
 
     <ProgressBar
+        android:id="@+id/progressbarofmain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/btnsend"
-        android:id="@+id/progressbarofmain"
-        android:visibility="invisible"
-        android:layout_marginTop="30dp">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible">
 
     </ProgressBar>
 
