@@ -1,10 +1,15 @@
 package com.meetup.meetupapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -48,6 +53,7 @@ public class insert extends AppCompatActivity {
     private EditText e1;
     private Button b1;
 
+
     private FirebaseAuth firebaseAuth;
     private String name;
     private String radiovalue;
@@ -80,22 +86,42 @@ public class insert extends AppCompatActivity {
         b1=findViewById(R.id.btnsave);
         mprogressbarofsetprofile=findViewById(R.id.progressbarofsetProfile);
 
+        ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
 
+                            Intent data = result.getData();
+                            imagepath=data.getData();
+                            mgetuserimageinimageview.setImageURI(imagepath);
+                        }
+                    }
+                });
+
+       /* public void openSomeActivityForResult() {
+            Intent intent = new Intent(this, SomeActivity.class);
+            someActivityResultLauncher.launch(intent);
+        }
+*/
         mgetuserimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                startActivityForResult(intent,PICK_IMAGE);
+                Intent intent=new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                someActivityResultLauncher.launch(intent);
             }
         });
 
+
+        final String[] radiovalue = new String[1];
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 name=e1.getText().toString();
                 rinterest=findViewById(R.id.rinterest);
-                String radiovalue = ((RadioButton)findViewById(rinterest.getCheckedRadioButtonId())).getText().toString();
-                if(name.isEmpty() && radiovalue.isEmpty())
+                radiovalue[0] = ((RadioButton)findViewById(rinterest.getCheckedRadioButtonId())).getText().toString();
+                if(name.isEmpty() && radiovalue[0].isEmpty())
                 {
                     Toast.makeText(getApplicationContext(), "All fields are mandatory", Toast.LENGTH_SHORT).show();
                 }
@@ -105,6 +131,7 @@ public class insert extends AppCompatActivity {
                 }
                 else
                 {
+                   // Toast.makeText(getApplicationContext(), name+" "+radiovalue[0], Toast.LENGTH_SHORT).show();
                     mprogressbarofsetprofile.setVisibility(View.VISIBLE);
                     sendDataForNewUser();
                     mprogressbarofsetprofile.setVisibility(View.INVISIBLE);
@@ -196,7 +223,7 @@ public class insert extends AppCompatActivity {
             }
         });
     }
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         if(requestCode==PICK_IMAGE && requestCode==RESULT_OK)
@@ -205,6 +232,6 @@ public class insert extends AppCompatActivity {
             mgetuserimageinimageview.setImageURI(imagepath);
         }
         super.onActivityResult(requestCode,resultCode,data);
-    }
+    }*/
 
 }

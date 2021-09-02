@@ -30,7 +30,7 @@ public class otpcheck extends AppCompatActivity {
     String eo;
     String ro;
 
-    FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class otpcheck extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ro=getIntent().getStringExtra("otp");
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,16 +61,43 @@ public class otpcheck extends AppCompatActivity {
                 }
                 else
                 {
-                    if(eo.length()==6){
+                   /* if(eo.length()==6){
                         p1.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(otpcheck.this,insert.class);
                         startActivity(intent);
                         finish();
+                    }*/
+                    if(ro!=null)
+                    {
+                        p1.setVisibility(View.VISIBLE);
+                        PhoneAuthCredential phoneAuthCredential=PhoneAuthProvider.getCredential(ro,eo);
+
+                        firebaseAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    p1.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(otpcheck.this,insert.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    //finish();
+                                }
+                                else
+                                {
+                                    Toast.makeText(getApplicationContext(), "enter correct OTP", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
-                    //p1.setVisibility(View.VISIBLE);
-                    //ro=getIntent().getStringExtra("otp");
-                    //PhoneAuthCredential credential=PhoneAuthProvider.getCredential(ro,eo);
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Check your Internet connection", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
                     //signIn(credential);
                 }
 
@@ -79,18 +107,7 @@ public class otpcheck extends AppCompatActivity {
     }
 
    /* private void signIn(PhoneAuthCredential credential) {
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    p1.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(otpcheck.this,insert.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
+
 
     }*/
 
