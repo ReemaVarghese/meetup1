@@ -29,12 +29,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.squareup.picasso.Picasso;
 
+import java.util.concurrent.atomic.AtomicMarkableReference;
+
 public class chatfragment extends Fragment {
 
     private FirebaseFirestore firebaseFirestore;
     LinearLayoutManager linearLayoutManager;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private FirebaseDatabase firebaseDatabase;
         ImageView mimageviewofuser;
 
     FirestoreRecyclerAdapter<firebasemodel, NoteViewHolder> chatAdapter;
@@ -54,10 +57,29 @@ public class chatfragment extends Fragment {
         mrecyclerview = v.findViewById(R.id.recyclerview);
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
 
+       /* final String[] uint = new String[1];
+        DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userprofile muser=snapshot.getValue(userprofile.class);
+                uint[0] =muser.getInserest();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        if(uint[0].isEmpty())
+        {
+            uint[0] ="football";
+        }
+*/
 
         //Query q1 = firebaseFirestore.collection("users").whereEqualTo("uid", firebaseAuth.getUid());
-        Query q1=firebaseFirestore.collection("users").whereNotEqualTo("uid",firebaseAuth.getUid());
-       // Query q2 = firebaseFirestore.collection("users").whereEqualTo("interest", unit[0]);
+         Query q1=firebaseFirestore.collection("users").whereNotEqualTo("uid",firebaseAuth.getUid());
+       //Query q2 = firebaseFirestore.collection("users").whereEqualTo("interest", uint[0]);
         //Query q3 = firebaseFirestore.collection("users").whereEqualTo("interest", "cricket");
 
 
