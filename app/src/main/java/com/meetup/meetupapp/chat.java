@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -14,23 +15,29 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class chat extends AppCompatActivity {
 
-
+    androidx.appcompat.widget.Toolbar mtoolbar;
+    ViewPager viewPager;
+    TabLayout tabLayout;
+    TabItem mchat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        Toolbar mtoolbar = findViewById(R.id.toolbar);
+        mtoolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mtoolbar);
+        tabLayout=findViewById(R.id.include);
+        mchat=findViewById(R.id.chat);
 
         Drawable drawable= ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_launcher_foreground);
         mtoolbar.setOverflowIcon(drawable);
-
 
 
 

@@ -49,13 +49,20 @@ public class chatfragment extends Fragment {
         Query q2 = firebaseFirestore.collection("users").whereEqualTo("interest", "football");
         Query q3 = firebaseFirestore.collection("users").whereEqualTo("interest", "cricket");
 
+        FirestoreRecyclerOptions<firebasemodel> a1=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q1, firebasemodel.class).build();
+        FirestoreRecyclerOptions<firebasemodel> a2=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q2, firebasemodel.class).build();
+        FirestoreRecyclerOptions<firebasemodel> a3=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q3, firebasemodel.class).build();
         FirestoreRecyclerOptions<firebasemodel> allusername;
 
-        if (q1.equals(q3)) {
-            allusername = new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q3, firebasemodel.class).build();
-        } else {
-            allusername = new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q2, firebasemodel.class).build();
+        if(a1.equals(a3))
+        {
+            allusername=a1;
         }
+        else
+        {
+           allusername=a1;
+        }
+
 
         chatAdapter = new FirestoreRecyclerAdapter<firebasemodel, NoteViewHolder>(allusername) {
             @Override
@@ -105,7 +112,6 @@ public class chatfragment extends Fragment {
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             particularusername = itemView.findViewById(R.id.nameofuser);
-            statusofuser = itemView.findViewById(R.id.statusofuser);
             mimageviewofuser = itemView.findViewById(R.id.imageviewofuser);
 
 
