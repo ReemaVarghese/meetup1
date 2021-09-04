@@ -57,25 +57,21 @@ public class chatfragment extends Fragment {
         mrecyclerview = v.findViewById(R.id.recyclerview);
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
 
-       /* final String[] uint = new String[1];
+     /*   final String[] uint = new String[1];
         DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userprofile muser=snapshot.getValue(userprofile.class);
-                uint[0] =muser.getInserest();
+               uint[0]=muser.getInserest();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
-        if(uint[0].isEmpty())
-        {
-            uint[0] ="football";
-        }
-*/
+        });*/
+
 
         //Query q1 = firebaseFirestore.collection("users").whereEqualTo("uid", firebaseAuth.getUid());
          Query q1=firebaseFirestore.collection("users").whereNotEqualTo("uid",firebaseAuth.getUid());
