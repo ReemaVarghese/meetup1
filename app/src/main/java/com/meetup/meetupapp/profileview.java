@@ -53,6 +53,7 @@ public class profileview extends AppCompatActivity {
         uintr=findViewById(R.id.intr);
         mtoolbarofviewprofile=findViewById(R.id.toolbarofviewprofile);
         mbackbuttonofviewprofile=findViewById(R.id.backbuttonofviewprofile);
+        mviewuserimageinimageview=findViewById(R.id.viewuserimageinimageview);
         firebaseStorage=FirebaseStorage.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
         firebaseFirestore=FirebaseFirestore.getInstance();
@@ -83,6 +84,8 @@ public class profileview extends AppCompatActivity {
                 userprofile muser=snapshot.getValue(userprofile.class);
                 uintr.setText(muser.getInserest());
                 uname.setText(muser.getUsername());
+               /* String s=muser.getUsername();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();*/
             }
 
             @Override
