@@ -77,9 +77,9 @@ public class chatfragment extends Fragment {
          Query q1=firebaseFirestore.collection("users").whereNotEqualTo("uid",firebaseAuth.getUid());
       // Query q2=firebaseFirestore.collection("users").whereEqualTo("username",uint[0]);
        //Query q=firebaseFirestore.collection("users").orderBy("username", Query.Direction.valueOf(uint[0]));
-        //Query q3 = firebaseFirestore.collection("users").whereEqualTo("interest", "cricket");
+        Query q3 = firebaseFirestore.collection("users").whereEqualTo("interest", "Cricket");
 
-        FirestoreRecyclerOptions<firebasemodel> a1=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q1, firebasemodel.class).build();
+        FirestoreRecyclerOptions<firebasemodel> a1=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q3, firebasemodel.class).build();
         /*FirestoreRecyclerOptions<firebasemodel> a2=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q2, firebasemodel.class).build();
         FirestoreRecyclerOptions<firebasemodel> a3=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q3, firebasemodel.class).build();
         FirestoreRecyclerOptions<firebasemodel> allusername;*/
