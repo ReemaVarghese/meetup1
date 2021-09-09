@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,10 +28,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 
 public class chatfragment extends Fragment {
@@ -58,7 +64,7 @@ public class chatfragment extends Fragment {
         mrecyclerview = v.findViewById(R.id.recyclerview);
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
 
-       /* final String[] uint = new String[1];
+      /*  final String[] uint = new String[1];
         DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -73,9 +79,12 @@ public class chatfragment extends Fragment {
             }
         });*/
 
-        //Query q1 = firebaseFirestore.collection("users").whereEqualTo("uid", firebaseAuth.getUid());
+
+
+
+            //Query q1 = firebaseFirestore.collection("users").whereEqualTo("uid", firebaseAuth.getUid());
          Query q1=firebaseFirestore.collection("users").whereNotEqualTo("uid",firebaseAuth.getUid());
-      // Query q2=firebaseFirestore.collection("users").whereEqualTo("username",uint[0]);
+         //Query q2=firebaseFirestore.collection("users").whereEqualTo("interest",uint[0]);
        //Query q=firebaseFirestore.collection("users").orderBy("username", Query.Direction.valueOf(uint[0]));
         Query q3 = firebaseFirestore.collection("users").whereEqualTo("interest", "Cricket");
 
@@ -163,4 +172,3 @@ public class chatfragment extends Fragment {
         }
     }
 }
-
