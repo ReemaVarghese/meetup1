@@ -64,29 +64,36 @@ public class chatfragment extends Fragment {
         mrecyclerview = v.findViewById(R.id.recyclerview);
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
 
-      /*  final String[] uint = new String[1];
+      /* final String[] uint = new String[1];
         DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userprofile muser=snapshot.getValue(userprofile.class);
-               uint[0]=muser.getUsername();
+                if(snapshot.exists())
+                {
+                    userprofile muser=snapshot.getValue(userprofile.class);
+                    uint[0] =muser.getInserest();
+                }
+                else{
+                    uint[0] =firebaseAuth.getUid();
+                }
+
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });*/
-
+        });
+*/
 
 
 
             //Query q1 = firebaseFirestore.collection("users").whereEqualTo("uid", firebaseAuth.getUid());
          Query q1=firebaseFirestore.collection("users").whereNotEqualTo("uid",firebaseAuth.getUid());
-         //Query q2=firebaseFirestore.collection("users").whereEqualTo("interest",uint[0]);
+        // Query q2=firebaseFirestore.collection("users").whereEqualTo("interest",uint[0]);
        //Query q=firebaseFirestore.collection("users").orderBy("username", Query.Direction.valueOf(uint[0]));
-        Query q3 = firebaseFirestore.collection("users").whereEqualTo("interest", "Cricket");
+        Query q3 = firebaseFirestore.collection("users").whereEqualTo("interest", "Football");
 
         FirestoreRecyclerOptions<firebasemodel> a1=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q3, firebasemodel.class).build();
         /*FirestoreRecyclerOptions<firebasemodel> a2=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(q2, firebasemodel.class).build();
