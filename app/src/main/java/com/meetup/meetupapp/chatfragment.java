@@ -90,8 +90,9 @@ public class chatfragment extends Fragment {
 
             //Query q1 = firebaseFirestore.collection("users").whereEqualTo("uid", firebaseAuth.getUid());
          Query q1=firebaseFirestore.collection("users").whereNotEqualTo("uid",firebaseAuth.getUid());
-        Query q3=firebaseFirestore.collection("users").whereEqualTo("interest",uint[0]);
+       Query q3=firebaseFirestore.collection("users").whereEqualTo("interest",uint[0]);
        //Query q=firebaseFirestore.collection("users").orderBy("username", Query.Direction.valueOf(uint[0]));
+
 
 
 
